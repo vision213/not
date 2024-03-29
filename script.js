@@ -17,17 +17,122 @@ window.onload = async function () {
         console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
     }
 
-    // Replace with your deployed contract address on Ganache
-    const contractAddress = '0x125dad2B39Da1C348ECfBb1d1A278250444FF1d8';
+    // Replace with your deployed contract address
+    const contractAddress = '0x125dad2B39Da1C348ECfBb1d1A278250444FF1d8'; // New contract address
     const contractABI = [
         // Paste your contract ABI here
         {
-            "inputs": [],
-            "name": "CounterfeitDrugDetection",
-            "stateMutability": "nonpayable",
-            "type": "constructor"
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": true,
+                    "internalType": "uint256",
+                    "name": "batchNumber",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "string",
+                    "name": "name",
+                    "type": "string"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "manufacturingDate",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "address",
+                    "name": "manufacturer",
+                    "type": "address"
+                }
+            ],
+            "name": "DrugRegistered",
+            "type": "event"
         },
-        // Add other ABI entries here
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "name": "drugs",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "batchNumber",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "string",
+                    "name": "name",
+                    "type": "string"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "manufacturingDate",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "address",
+                    "name": "manufacturer",
+                    "type": "address"
+                },
+                {
+                    "internalType": "bool",
+                    "name": "isRegistered",
+                    "type": "bool"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_batchNumber",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "string",
+                    "name": "_name",
+                    "type": "string"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_manufacturingDate",
+                    "type": "uint256"
+                }
+            ],
+            "name": "registerDrug",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_batchNumber",
+                    "type": "uint256"
+                }
+            ],
+            "name": "verifyDrug",
+            "outputs": [
+                {
+                    "internalType": "bool",
+                    "name": "",
+                    "type": "bool"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        }
     ];
 
     counterfeitDrugContract = new web3.eth.Contract(contractABI, contractAddress);
@@ -48,6 +153,8 @@ async function registerDrug(event) {
 
     try {
         let accounts = await web3.eth.getAccounts();
+        console.log("Accounts:", accounts); // Log the accounts for debugging
+        console.log("Counterfeit Drug Contract:", counterfeitDrugContract); // Log the contract for debugging
         let result = await counterfeitDrugContract.methods.registerDrug(batchNumber, name, manufacturingDate).send({
             from: accounts[0]
         });
