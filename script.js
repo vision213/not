@@ -17,8 +17,12 @@ window.onload = async function () {
         console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
     }
 
-    // Replace with your deployed contract address
-    const contractAddress = '0x125dad2B39Da1C348ECfBb1d1A278250444FF1d8'; // New contract address
+    // Use Ganache local blockchain
+    const ganacheUrl = 'http://localhost:7545'; // Assuming Ganache is running on the default port
+    web3 = new Web3(new Web3.providers.HttpProvider(ganacheUrl));
+
+    // Replace with your deployed contract address on Ganache
+    const contractAddress = '0xb4451298aaD2FA3288CbB5A95ECbCD4cf7FE5781'; // New contract address
     const contractABI = [
         // Paste your contract ABI here
         {
