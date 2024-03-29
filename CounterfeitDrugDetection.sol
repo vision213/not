@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract CounterfeitDrugDetection {
+contract counterfeitDrugDetection {
     // Structure to represent a drug
     struct Drug {
         uint256 batchNumber;
