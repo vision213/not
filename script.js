@@ -18,7 +18,7 @@ window.onload = async function () {
     }
 
     // Replace with your deployed contract address on Ganache
-    const contractAddress = 'YOUR_CONTRACT_ADDRESS';
+    const contractAddress = '0x125dad2B39Da1C348ECfBb1d1A278250444FF1d8';
     const contractABI = [
         // Paste your contract ABI here
         {
