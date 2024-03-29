@@ -1,4 +1,5 @@
 let web3;
+let counterfeitDrugContract; // Define the variable at the global scope
 
 // Wait for the window to load before initializing
 window.onload = async function () {
