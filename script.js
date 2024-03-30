@@ -18,7 +18,7 @@ window.onload = async function () {
     }
 
     // Replace with your deployed contract address
-    const contractAddress = '0x125dad2B39Da1C348ECfBb1d1A278250444FF1d8'; // New contract address
+    const contractAddress = '0x2A972bd8c056475cD23A64B51ECEe3Efe3660f06'; // New contract address
     const contractABI = [
         // Paste your contract ABI here
         {
