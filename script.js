@@ -18,7 +18,7 @@ window.onload = async function () {
     }
 
     // Replace with your deployed contract address
-    const contractAddress = '0x2A972bd8c056475cD23A64B51ECEe3Efe3660f06'; // New contract address
+    const contractAddress = '0x2A972bd8c056475cD23A64B51ECEe3Efe3660f06'; // Replace with the actual contract address
     const contractABI = [
         // Paste your contract ABI here
         {
@@ -178,5 +178,39 @@ async function verifyDrug() {
         alert("Error verifying drug: " + error.message);
     }
 }
+
+// Add 10 random drug datasets for testing
+let randomDrugs = [
+    { batchNumber: 12345, name: "Paracetamol", manufacturingDate: 1648939200 }, // Example 1
+    { batchNumber: 54321, name: "Ibuprofen", manufacturingDate: 1648593600 }, // Example 2
+    { batchNumber: 98765, name: "Aspirin", manufacturingDate: 1648262400 }, // Example 3
+    { batchNumber: 67890, name: "Amoxicillin", manufacturingDate: 1647931200 }, // Example 4
+    { batchNumber: 13579, name: "Ciprofloxacin", manufacturingDate: 1647595200 }, // Example 5
+    { batchNumber: 24680, name: "Lisinopril", manufacturingDate: 1647264000 }, // Example 6
+    { batchNumber: 11223, name: "Atorvastatin", manufacturingDate: 1646928000 }, // Example 7
+    { batchNumber: 33445, name: "Metformin", manufacturingDate: 1646596800 }, // Example 8
+    { batchNumber: 55667, name: "Levothyroxine", manufacturingDate: 1646265600 }, // Example 9
+    { batchNumber: 77889, name: "Simvastatin", manufacturingDate: 1645934400 } // Example 10
+];
+
+// Display random drugs in the table
+let drugsTable = document.getElementById("drugsTable");
+randomDrugs.forEach(drug => {
+    let row = drugsTable.insertRow();
+    let cell1 = row.insertCell(0);
+    let cell2 = row.insertCell(1);
+    let cell3 = row.insertCell(2);
+    let cell4 = row.insertCell(3);
+    cell1.innerHTML = drug.batchNumber;
+    cell2.innerHTML = drug.name;
+    cell3.innerHTML = new Date(drug.manufacturingDate * 1000).toLocaleDateString();
+    let verifyButton = document.createElement("button");
+    verifyButton.innerHTML = "Verify";
+    verifyButton.addEventListener("click", () => {
+        document.getElementById("verifyBatchNumber").value = drug.batchNumber;
+        verifyDrug();
+    });
+    cell4.appendChild(verifyButton);
+});
 
 document.getElementById("registerForm").addEventListener("submit", registerDrug);
