@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirect after Correct Input</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        h2 {
+            margin-bottom: 20px;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        label {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        input[type="text"] {
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-bottom: 15px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        #redirectLink {
+            display: none;
+        }
+    </style>
+    <script>
+        function checkInput() {
+            var userInput = document.getElementById("inputField").value;
+            var correctInput = "TMPX123E"; // Change this to your correct input
+
+            if (userInput === correctInput) {
+                var link = document.getElementById("redirectLink");
+                link.href = "https://docs.google.com/forms/d/e/1FAIpQLSfYj3LXdAFO3AHCkQc206E_2dWJFm_sivIsjFaH8vOG3liKag/viewform?usp=sf_link"; // Change this to your desired link
+                link.click();
+            } else {
+                alert("Incorrect input. Please try again.");
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <form>
+            <label for="inputField">Enter your code here</label>
+            <input type="text" id="inputField" name="inputField">
+            <button type="button" onclick="checkInput()">Submit</button>
+        </form>
+
+        <a id="redirectLink" style="display: none;"></a>
+    </div>
+
+</body>
+
+</html>
